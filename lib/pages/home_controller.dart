@@ -10,9 +10,7 @@ class HomeController extends GetxController with StateMixin<List<Task>> {
     super.onInit();
     _sharedPrefService = Get.find();
     await _sharedPrefService.init();
-    change([], status: RxStatus.loading());
     change(_sharedPrefService.loadTasks(), status: RxStatus.success());
-    print("Init");
   }
 
   addTask(Task task){
@@ -37,9 +35,12 @@ class HomeController extends GetxController with StateMixin<List<Task>> {
     change(value, status: RxStatus.success());
   }
 
+
   @override
-  void onClose() {
-    if (value == null) return;
-    _sharedPrefService.save(value!);
+  void change(List<Task>? newState, {RxStatus? status}) {
+    super.change(newState,status: status);
+    if(newState != null){
+      _sharedPrefService.save(newState);
+    }
   }
 }

@@ -25,20 +25,23 @@ class SharedPrefService extends GetxService{
     } else if (value is List<String>) {
       await prefs.setStringList(key, value);
     } else {
-      await prefs.setString(key, jsonEncode(value));
+      await prefs.setString(key, jsonEncode((value as dynamic)()));
     }
   }
 
   save(List<Task> tasks) async {
     await _save(TASKS_KEY, jsonEncode(tasks));
+    var rawData = prefs.getString(TASKS_KEY);
+    print(rawData);
   }
 
   List<Task> loadTasks()  {
     var rawData = prefs.getString(TASKS_KEY);
+    print(rawData);
     if(rawData == null) {
       return [];
     }
-    var rawList = jsonDecode(rawData) as List<Map>;
-    return rawList.map((e) => Task.fromMap(e)).toList();
+    var rawList = jsonDecode(rawData) as List;
+    return rawList.map((e) => Task.fromJson(e as Map<dynamic, dynamic>)).toList();
   }
 }
