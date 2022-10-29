@@ -6,6 +6,7 @@ class Task {
   bool done;
   Task({required this.content, required this.createdTimestamp, required this.done, required this.endTimestamp});
 
+  int get id => createdTimestamp.millisecond;
 
   factory Task.fromJson(dynamic task) {
     return Task(

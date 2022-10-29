@@ -31,13 +31,10 @@ class SharedPrefService extends GetxService{
 
   save(List<Task> tasks) async {
     await _save(TASKS_KEY, jsonEncode(tasks));
-    var rawData = prefs.getString(TASKS_KEY);
-    print(rawData);
   }
 
   List<Task> loadTasks()  {
     var rawData = prefs.getString(TASKS_KEY);
-    print(rawData);
     if(rawData == null) {
       return [];
     }

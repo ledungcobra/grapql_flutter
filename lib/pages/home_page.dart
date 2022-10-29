@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/pages/home_controller.dart';
 import 'package:todo_app/pages/widgets/todo_task_dialog.dart';
@@ -9,17 +7,6 @@ import 'package:todo_app/pages/widgets/todo_task_dialog.dart';
 import 'widgets/todo_cell.dart';
 
 class HomePage extends GetView<HomeController> {
-
-  void _addTask(String content, DateTime selectedDate) {
-    if(content == "") return;
-    controller.addTask(Task(
-      content: content,
-      createdTimestamp: DateTime.now(),
-      done: false,
-      endTimestamp: selectedDate,
-    ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +19,53 @@ class HomePage extends GetView<HomeController> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
-        child: _taskView(),
+        child: Column(
+          children: [
+            _filters(),
+            _taskView(),
+          ],
+        ),
       ),
       floatingActionButton: _addTaskButton(),
     );
+  }
+
+  _filters() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text("Filters"),
+          SizedBox(width: 25,),
+          TodoFilter(const <String>["All", "Done", "Upcoming", "Today", "Not Done"], _handleFilterChange)
+        ],
+      ),
+    );
+  }
+
+  _handleFilterChange(String value){
+    switch(value){
+      case "All":
+        controller.filterAllTasks();
+        break;
+      case "Today":
+        controller.filterTodayTasks();
+        break;
+      case "Upcoming":
+        controller.filterUpcomingTasks();
+        break;
+      case "Done":
+        controller.filterDoneTasks();
+        break;
+      case "Not Done":
+        controller.filterNotDoneTasks();
+        break;
+    }
+  }
+
+  Widget _taskView() {
+    return Obx(() => _taskList(controller.tasks));
   }
 
   FloatingActionButton _addTaskButton() {
@@ -46,26 +76,70 @@ class HomePage extends GetView<HomeController> {
     );
   }
 
-  Widget _taskView() {
-    return Obx(()=> _taskList(controller.tasks));
+  void _displayTaskPopup() {
+    Get.dialog(TodoTaskDialog(
+      onDone: _addTask,
+      title: 'Add new task',
+      doneButtonTitle: 'Add',
+    ));
   }
 
   Widget _taskList(List<Task> tasks) {
-    return ListView.separated(
-      itemCount: tasks.length,
-      itemBuilder: (context, index) {
-        var task = tasks[index];
-        return TodoCell(task: task,  index: index);
-      },
-       separatorBuilder: (context, index) => Divider(
-         height: 4,
-       ),
+    return Expanded(
+      child: ListView.separated(
+        itemCount: tasks.length,
+        itemBuilder: (context, index) {
+          var task = tasks[index];
+          return TodoCell(task: task, index: index);
+        },
+        separatorBuilder: (context, index) => Divider(
+          height: 4,
+        ),
+      ),
     );
   }
 
+  void _addTask(String content, DateTime selectedDate) {
+    if (content == "") return;
+    controller.addTask(Task(
+      content: content,
+      createdTimestamp: DateTime.now(),
+      done: false,
+      endTimestamp: selectedDate,
+    ));
+  }
+}
 
+class TodoFilter extends StatelessWidget {
+  final List<String> list;
+  late var dropdownValue = list.first.obs;
+  final void Function(String value) onChangeValue;
 
-  void _displayTaskPopup() {
-    Get.dialog(TodoTaskDialog(onDone: _addTask,title: 'Add new task',doneButtonTitle: 'Add',));
+  TodoFilter(this.list, this.onChangeValue);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => DropdownButton<String>(
+        value: dropdownValue.value,
+        icon: const Icon(Icons.arrow_downward),
+        elevation: 16,
+        style: const TextStyle(color: Colors.deepPurple),
+        underline: Container(
+          height: 2,
+          color: Colors.deepPurpleAccent,
+        ),
+        onChanged: (String? value) {
+          onChangeValue(value!);
+          dropdownValue.value = value!;
+        },
+        items: list.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      ),
+    );
   }
 }
