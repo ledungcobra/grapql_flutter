@@ -11,7 +11,8 @@ class HomeController extends GetxController {
   NotificationService notificationService = Get.find();
 
   final _fullTasks = <Task>[].obs;
-  var filter = TaskFilter.All.obs;
+  final _filter = TaskFilter.All.obs;
+  final _search = "".obs;
 
   @override
   void onInit() async {
@@ -47,40 +48,49 @@ class HomeController extends GetxController {
   }
 
   filterDoneTasks() {
-    filter.value = TaskFilter.Done;
+    _filter.value = TaskFilter.Done;
   }
 
   filterAllTasks() {
-    filter.value = TaskFilter.All;
+    _filter.value = TaskFilter.All;
   }
 
   filterUpcomingTasks() {
-    filter.value = TaskFilter.Upcoming;
+    _filter.value = TaskFilter.Upcoming;
   }
 
   filterTodayTasks() {
-    filter.value = TaskFilter.Today;
+    _filter.value = TaskFilter.Today;
   }
 
   List<Task> get tasks {
-    switch (filter.value) {
+    var searchFilterTasks = _fullTasks
+        .where((t) => t.content.toLowerCase().contains(RegExp(_search.value.toLowerCase())))
+        .toList();
+    switch (_filter.value) {
       case TaskFilter.All:
-        return _fullTasks;
+        return searchFilterTasks;
       case TaskFilter.Upcoming:
-        return _fullTasks
+        return searchFilterTasks
             .where((t) => !t.done && t.endTimestamp.isComing())
             .toList();
       case TaskFilter.Done:
-        return _fullTasks.where((t) => t.done).toList();
+        return searchFilterTasks.where((t) => t.done).toList();
       case TaskFilter.Today:
         var now = DateTime.now();
-        return _fullTasks.where((t) => now.isSameDate(t.endTimestamp)).toList();
+        return searchFilterTasks
+            .where((t) => now.isSameDate(t.endTimestamp))
+            .toList();
       case TaskFilter.NotDone:
-        return _fullTasks.where((t) => !t.done).toList();
+        return searchFilterTasks.where((t) => !t.done).toList();
     }
   }
 
   void filterNotDoneTasks() {
-    filter.value = TaskFilter.NotDone;
+    _filter.value = TaskFilter.NotDone;
+  }
+
+  void filterBySearch(String search){
+    _search.value = search;
   }
 }

@@ -22,6 +22,7 @@ class HomePage extends GetView<HomeController> {
         child: Column(
           children: [
             _filters(),
+            SizedBox(height: 15),
             _taskView(),
           ],
         ),
@@ -30,22 +31,45 @@ class HomePage extends GetView<HomeController> {
     );
   }
 
+
   _filters() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Expanded(
+            child: TextField(
+              onSubmitted: (value){
+                controller.filterBySearch(value);
+              },
+              onChanged: (value){
+                if(value == ""){
+                  controller.filterBySearch("");
+                }
+              },
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(),
+                hintText: 'Search...',
+              ),
+            ),
+          ),
+          SizedBox(width: 10),
           Text("Filters"),
-          SizedBox(width: 25,),
-          TodoFilter(const <String>["All", "Done", "Upcoming", "Today", "Not Done"], _handleFilterChange)
+          SizedBox(
+            width: 25,
+          ),
+          TodoFilter(
+              const <String>["All", "Done", "Upcoming", "Today", "Not Done"],
+              _handleFilterChange)
         ],
       ),
     );
   }
 
-  _handleFilterChange(String value){
-    switch(value){
+  _handleFilterChange(String value) {
+    switch (value) {
       case "All":
         controller.filterAllTasks();
         break;

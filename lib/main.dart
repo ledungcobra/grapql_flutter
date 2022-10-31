@@ -14,9 +14,9 @@ void main() async {
 }
 
 iocInit() async {
-  var notiService = NotificationService();
-  await notiService.init();
-  Get.put(notiService);
+  var notificationService = NotificationService();
+  await notificationService.init();
+  Get.put(notificationService);
   Get.put(SharedPrefService());
   Get.put(HomeController());
   Get.put(DateFormat("hh:mm dd-MM-yyyy"));
