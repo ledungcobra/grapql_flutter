@@ -1,0 +1,3 @@
+subscription Sub($auth: String) {
+    test(auth: $auth)
+}

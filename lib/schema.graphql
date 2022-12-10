@@ -1,0 +1,74 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+type LoginResponse {
+  user: User
+  success: Boolean
+  token: String
+}
+
+type Mutation {
+  addTodo(todo: TodoInput): Todo
+  deleteTodo(id: Int): Todo
+  assignTodoProject(todoId: Int, projectId: Int): Todo
+  assignTodoToMember(todoId: Int, userId: String): Todo
+  markDone(todoId: Int, value: Boolean): Todo
+  login(user: String, password: String): LoginResponse
+  register(id: String, name: String, password: String): RegisterResponse
+  createProject(name: String): Project
+  addMember(userId: String, projectId: Int): Project
+}
+
+type Project {
+  id: Int
+  name: String
+  manager: User
+  members: [User]
+  todos: [Todo]
+}
+
+type Query {
+  todos: [Todo]
+  todoById(id: Int): Todo
+  profile: User
+  projectById(projectId: Int): Project
+}
+
+type RegisterResponse {
+  user: User
+  success: Boolean
+}
+
+type Subscription {
+  test(auth: String): String
+  todos: Todo
+}
+
+type Todo {
+  id: Int
+  title: String
+  is_completed: Boolean
+  created_at: String
+  createdUser: User
+  project: Project
+  assignee: User
+}
+
+input TodoInput {
+  title: String
+  projectId: Int
+}
+
+type User {
+  id: ID
+  name: String
+  password: String
+  created_at: String
+  last_seen: String
+  projects: [Project]
+  todos: [Todo]
+  assigedTodos: [Todo]
+}

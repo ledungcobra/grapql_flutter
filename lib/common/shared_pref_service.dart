@@ -29,16 +29,16 @@ class SharedPrefService extends GetxService{
     }
   }
 
-  save(List<Task> tasks) async {
+  save(List<Todo> tasks) async {
     await _save(TASKS_KEY, jsonEncode(tasks));
   }
 
-  List<Task> loadTasks()  {
+  List<Todo> loadTasks()  {
     var rawData = prefs.getString(TASKS_KEY);
     if(rawData == null) {
       return [];
     }
     var rawList = jsonDecode(rawData) as List;
-    return rawList.map((e) => Task.fromJson(e as Map<dynamic, dynamic>)).toList();
+    return rawList.map((e) => Todo.fromJson(e as Map<dynamic, dynamic>)).toList();
   }
 }

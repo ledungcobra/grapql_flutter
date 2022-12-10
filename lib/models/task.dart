@@ -1,28 +1,22 @@
-class Task {
+class Todo {
 
-  String content;
-  DateTime createdTimestamp;
-  DateTime endTimestamp;
+  int id;
+  String title;
   bool done;
-  Task({required this.content, required this.createdTimestamp, required this.done, required this.endTimestamp});
+  Todo({required this.title, required this.done,required this.id});
 
-  int get id => createdTimestamp.millisecond;
-
-  factory Task.fromJson(dynamic task) {
-    return Task(
-      content: task['content'],
-      createdTimestamp: DateTime.parse(task['timestamp']),
-      done: task['done'],
-      endTimestamp: DateTime.parse(task['endTimestamp'])
+  factory Todo.fromJson(dynamic task) {
+    return Todo(
+      id: task['id'],
+      title: task['title'],
+      done: task['is_completed'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'content': content,
-      'timestamp': createdTimestamp.toString(),
-      'done': done,
-      'endTimestamp': endTimestamp.toString()
+      'content': title,
+      'is_completed': done,
     };
   }
 }
