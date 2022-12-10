@@ -1,6 +1,0 @@
-subscription SubHa {
-  todos {
-    id
-    title
-  }
-}
