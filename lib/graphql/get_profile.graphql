@@ -1,0 +1,13 @@
+ query GetProfile {
+   profile {
+     id
+     name
+     avatarUrl
+     assignedTodos {
+          id
+          title
+          created_at
+          is_completed
+     }
+   }
+ }

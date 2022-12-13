@@ -1,0 +1,6 @@
+mutation RemoveMember($userId:String, $projectId:Int) {
+    user:removeMember(userId: $userId, projectId: $projectId){
+        id
+        name
+    }
+}

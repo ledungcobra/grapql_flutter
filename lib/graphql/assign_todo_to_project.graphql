@@ -1,0 +1,10 @@
+ mutation AssignTodoToProject($projectId: Int, $todoId: Int) {
+   assignTodoProject(projectId: $projectId, todoId: $todoId) {
+     id
+     title
+     project {
+       id
+       name
+     }
+   }
+ }

@@ -1,0 +1,8 @@
+ mutation InsertTodo($title: String, $projectId: Int) {
+   todo:addTodo(todo: { title: $title, projectId: $projectId }) {
+     id
+     title
+     created_at
+     is_completed
+   }
+ }

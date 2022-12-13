@@ -5,8 +5,34 @@ targets:
         enabled: true
         options:
           schema: todo_app|lib/schema.graphql
-
+          output_dir: 'generated'
+          type_overrides:
+            Upload:
+              name: MultipartFile
+              import: 'package:http/http.dart'
       ferry_generator|serializer_builder:
         enabled: true
         options:
           schema: todo_app|lib/schema.graphql
+          output_dir: 'generated'
+          type_overrides:
+            Upload:
+              name: MultipartFile
+              import: 'package:http/http.dart'
+          custom_serializers:
+            - import: 'package:todo_app/common/multipart_file_serializer.dart'
+              name: UploadSerializer
+      json_serializable:
+        options:
+          any_map: false
+          checked: false
+          constructor: ""
+          create_factory: true
+          create_field_map: false
+          create_to_json: true
+          disallow_unrecognized_keys: false
+          explicit_to_json: false
+          field_rename: none
+          generic_argument_factories: false
+          ignore_unannotated: false
+          include_if_null: true

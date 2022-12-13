@@ -1,0 +1,20 @@
+ mutation AssignTodoToMember($todoId: Int, $userId: String) {
+   assignTodoToMember(todoId: $todoId, userId: $userId) {
+     id
+     title
+     created_at
+     is_completed
+     assignee {
+        id
+        name
+     }
+     createdUser {
+        id
+        name
+     }
+     project {
+        id
+       name
+     }
+   }
+ }

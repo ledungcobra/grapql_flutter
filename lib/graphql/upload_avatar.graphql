@@ -1,0 +1,7 @@
+mutation UploadAvatar($file: Upload!){
+  uploadAvatar(file: $file) {
+    filename
+    encoding
+    encoding
+  }
+}

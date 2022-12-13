@@ -1,0 +1,9 @@
+mutation Register($id: String, $password: String, $user: String) {
+  register(id: $id, password: $password, name: $user) {
+    success
+    user {
+      id
+      name
+    }
+  }
+}

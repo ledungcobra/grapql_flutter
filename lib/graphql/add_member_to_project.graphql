@@ -1,0 +1,20 @@
+ mutation AddMemberToProject($userId: String, $projectId: Int) {
+   project: addMember(userId: $userId, projectId: $projectId) {
+     id
+     name
+     manager {
+        id
+        name
+     }
+     members {
+        id
+        name
+     }
+     todos {
+        id
+        title
+        created_at
+        is_completed
+     }
+   }
+ }

@@ -1,0 +1,12 @@
+ query GetTodos {
+   todos {
+     id
+     title
+     is_completed
+     created_at
+     assignee {
+        id
+        name
+     }
+   }
+ }

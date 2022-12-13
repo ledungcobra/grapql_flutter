@@ -1,0 +1,7 @@
+query GetTodoById($id: Int) {
+  todoById(id: $id) {
+    id
+    title
+    created_at
+  }
+}

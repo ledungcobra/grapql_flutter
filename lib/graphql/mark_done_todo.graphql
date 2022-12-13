@@ -1,0 +1,7 @@
+mutation MarkTodoDone($todoId: Int, $value: Boolean) {
+  markDone(todoId: $todoId, value: $value) {
+    id
+    title
+    is_completed
+  }
+}

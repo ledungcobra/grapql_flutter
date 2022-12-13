@@ -1,0 +1,17 @@
+subscription TodoNotification {
+  notification:todoNotification {
+    payload {
+      id
+      title
+      is_completed
+      created_at
+      project {
+         id
+         name
+      }
+    }
+    userId
+    action
+  }
+}
+

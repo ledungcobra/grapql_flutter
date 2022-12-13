@@ -1,0 +1,23 @@
+ mutation CreateProject($name: String) {
+   createProject(name: $name) {
+     id
+     name
+
+     manager {
+      id
+      name
+     }
+
+     members {
+      id
+      name
+     }
+
+     todos {
+      id
+      title
+      created_at
+      is_completed
+     }
+   }
+ }

@@ -1,0 +1,18 @@
+query QueryProjectById($projectId: Int) {
+  projectById(projectId: $projectId) {
+    id
+    name
+    todos {
+      id
+      title
+      assignee {
+        id
+        name
+      }
+    }
+    members {
+      id
+      name
+    }
+  }
+}
