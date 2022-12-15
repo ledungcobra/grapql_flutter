@@ -8,8 +8,8 @@ class Profile {
   String id;
   String name;
   List<Todo> assignedTodos;
-  String? avatarUrl;
-  Profile({required this.id, required this.name, required this.assignedTodos, this.avatarUrl});
+  String? avatar_url;
+  Profile({required this.id, required this.name, required this.assignedTodos, this.avatar_url});
   factory Profile.fromJson(Map<String, dynamic> json) => _$ProfileFromJson(json);
   Map<String, dynamic> toJson() => _$ProfileToJson(this);
 }

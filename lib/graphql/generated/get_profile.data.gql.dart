@@ -48,7 +48,7 @@ abstract class GGetProfileData_profile
   String get G__typename;
   String? get id;
   String? get name;
-  String? get avatarUrl;
+  String? get avatar_url;
   BuiltList<GGetProfileData_profile_assignedTodos>? get assignedTodos;
   static Serializer<GGetProfileData_profile> get serializer =>
       _$gGetProfileDataProfileSerializer;
@@ -82,6 +82,7 @@ abstract class GGetProfileData_profile_assignedTodos
   String? get title;
   String? get created_at;
   bool? get is_completed;
+  GGetProfileData_profile_assignedTodos_assignee? get assignee;
   static Serializer<GGetProfileData_profile_assignedTodos> get serializer =>
       _$gGetProfileDataProfileAssignedTodosSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -92,6 +93,38 @@ abstract class GGetProfileData_profile_assignedTodos
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GGetProfileData_profile_assignedTodos.serializer,
+        json,
+      );
+}
+
+abstract class GGetProfileData_profile_assignedTodos_assignee
+    implements
+        Built<GGetProfileData_profile_assignedTodos_assignee,
+            GGetProfileData_profile_assignedTodos_assigneeBuilder> {
+  GGetProfileData_profile_assignedTodos_assignee._();
+
+  factory GGetProfileData_profile_assignedTodos_assignee(
+      [Function(GGetProfileData_profile_assignedTodos_assigneeBuilder b)
+          updates]) = _$GGetProfileData_profile_assignedTodos_assignee;
+
+  static void _initializeBuilder(
+          GGetProfileData_profile_assignedTodos_assigneeBuilder b) =>
+      b..G__typename = 'User';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String? get id;
+  String? get name;
+  String? get avatar_url;
+  static Serializer<GGetProfileData_profile_assignedTodos_assignee>
+      get serializer => _$gGetProfileDataProfileAssignedTodosAssigneeSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GGetProfileData_profile_assignedTodos_assignee.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GGetProfileData_profile_assignedTodos_assignee? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GGetProfileData_profile_assignedTodos_assignee.serializer,
         json,
       );
 }

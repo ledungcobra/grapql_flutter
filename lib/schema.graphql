@@ -88,7 +88,7 @@ type User {
   password: String
   created_at: String
   last_seen: String
-  avatarUrl: String
+  avatar_url: String
   projects: [Project]
   todos: [Todo]
   assignedTodos: [Todo]

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/pages/project_detail/project_detail_page.dart';
+import 'package:todo_app/widgets/avatar.dart';
 
 import '../../widgets/common_dialog.dart';
 import 'projects_controller.dart';
@@ -13,18 +14,18 @@ final colorsMap = {
 };
 
 class ProjectsPage extends StatelessWidget {
-  final projectController = Get.find<ProjectsController>();
-  final dateFormat = Get.find<DateFormat>();
+  final controller = Get.find<ProjectsController>();
   final projectName = "".obs;
 
   ProjectsPage({Key? key}) : super(key: key);
 
   _handleAddProject(String projectName) {
-    projectController.saveProject(projectName);
+    controller.saveProject(projectName);
   }
 
   @override
   Widget build(BuildContext context) {
+    controller.loadProjects();
     return Scaffold(
       appBar: GFAppBar(
         title: Text('Projects'),
@@ -36,25 +37,21 @@ class ProjectsPage extends StatelessWidget {
               height: 0.9 * Get.height,
               child: Obx(
                 () => ListView(
-                  children: projectController.projects
+                  children: controller.projects
                       .map((x) => InkWell(
-                        onTap: ()=> Get.to(ProjectDetailPage(project: x)),
-                        child: GFListTile(
+                            onTap: () => Get.to(ProjectDetailPage(project: x)),
+                            child: GFListTile(
                               titleText: x.name,
                               title: Text('Test'),
                               subTitleText:
                                   'Created by ${x.manager?.name?.toString()}',
                               subTitle: Text('Assignee'),
-
-                              avatar: ProfilePicture(
-                                name: x.manager!.name!.substring(0, 1),
-                                radius: 22,
-                                fontsize: 20,
-                              ),
+                              avatar: DefaultAvatar(
+                                  radius: 22, fontsize: 20, user: x.manager),
                               color: colorsMap[0],
                               focusColor: Colors.grey,
                             ),
-                      ))
+                          ))
                       .toList(),
                 ),
               ),
@@ -70,7 +67,11 @@ class ProjectsPage extends StatelessWidget {
           color: Colors.white,
         ),
         onPressed: () {
-          Get.dialog(CommonDialog(onDone: _handleAddProject,title: 'Add new project',placeHolder: 'Name',));
+          Get.dialog(CommonDialog(
+            onDone: _handleAddProject,
+            title: 'Add new project',
+            placeHolder: 'Name',
+          ));
         },
       ),
     );

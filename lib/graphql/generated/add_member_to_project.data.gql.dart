@@ -84,6 +84,7 @@ abstract class GAddMemberToProjectData_project_manager
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GAddMemberToProjectData_project_manager> get serializer =>
       _$gAddMemberToProjectDataProjectManagerSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -115,6 +116,7 @@ abstract class GAddMemberToProjectData_project_members
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GAddMemberToProjectData_project_members> get serializer =>
       _$gAddMemberToProjectDataProjectMembersSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(

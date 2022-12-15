@@ -1,33 +1,20 @@
-import 'package:ferry/ferry.dart';
 import 'package:get/get.dart';
-import 'package:todo_app/common/handle_error.dart';
-import 'package:todo_app/dto/user.dart';
-import 'package:todo_app/graphql/generated/add_member_to_project.data.gql.dart';
+import 'package:todo_app/common/mixins.dart';
 import 'package:todo_app/graphql/generated/add_member_to_project.req.gql.dart';
-import 'package:todo_app/graphql/generated/assign_todo_to_member.data.gql.dart';
-import 'package:todo_app/graphql/generated/create_project.req.gql.dart';
 import 'package:todo_app/graphql/generated/delete_todo.req.gql.dart';
-import 'package:todo_app/graphql/generated/get_projects.req.gql.dart';
 import 'package:todo_app/graphql/generated/insert_todo.req.gql.dart';
-import 'package:todo_app/graphql/generated/remove_member.data.gql.dart';
 import 'package:todo_app/graphql/generated/remove_member.req.gql.dart';
 
 import '../../dto/project.dart';
 import '../../dto/todo.dart';
 import '../../graphql/generated/assign_todo_to_member.req.gql.dart';
 
-class ProjectDetailController extends GetxController with HandleError {
-  final client = Get.find<Client>();
+class ProjectDetailController extends GetxController with HandleError, WithClient {
+
   final loading = false.obs;
   Rxn<Project> project = Rxn();
 
   ProjectDetailController();
-
-  @override
-  void onInit() {
-    super.onInit();
-
-  }
 
   void addMember(String userId) {
     var request = GAddMemberToProjectReq((b) => b

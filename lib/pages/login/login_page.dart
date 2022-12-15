@@ -1,14 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:todo_app/common/mixins.dart';
 
-class LoginPage extends StatelessWidget {
+import '../../app.dart';
+import '../../ioc_manager.dart';
+import '../../service/user_service.dart';
+import '../register/register.dart';
+
+class LoginPage extends StatelessWidget with HandleError {
+  final userId = "admin".obs;
+  final password = "password".obs;
+
+  final loading = false.obs;
+  final userController = Get.find<UserController>();
+
   LoginPage({Key? key}) : super(key: key);
-  final userId = "".obs;
-  final password = "".obs;
+
+  _checkLogin() async {
+    if (userController.token != null && userController.token!.isNotEmpty) {
+      await Get.find<AppObjectsManager>().updateGraphQLClient();
+      Get.to(TabPage());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    // _handleLogin(userId.value, password.value);
+    // _checkLogin();
     return Scaffold(
       appBar:
           AppBar(title: Text('Login', style: TextStyle(color: Colors.white))),
@@ -35,11 +54,15 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(height: 10),
               GFButton(
-                onPressed: () {},
+                onPressed: () =>
+                    userController.handleLogin(userId.value, password.value),
                 color: Get.theme.primaryColor,
                 fullWidthButton: true,
                 child: Text('Login'),
-              )
+              ),
+              TextButton(
+                  onPressed: () => Get.to(() => RegisterPage()),
+                  child: Text('Register an account ? '))
             ],
           ),
         ),

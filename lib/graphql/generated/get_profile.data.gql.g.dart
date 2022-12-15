@@ -13,6 +13,9 @@ Serializer<GGetProfileData_profile> _$gGetProfileDataProfileSerializer =
 Serializer<GGetProfileData_profile_assignedTodos>
     _$gGetProfileDataProfileAssignedTodosSerializer =
     new _$GGetProfileData_profile_assignedTodosSerializer();
+Serializer<GGetProfileData_profile_assignedTodos_assignee>
+    _$gGetProfileDataProfileAssignedTodosAssigneeSerializer =
+    new _$GGetProfileData_profile_assignedTodos_assigneeSerializer();
 
 class _$GGetProfileDataSerializer
     implements StructuredSerializer<GGetProfileData> {
@@ -102,10 +105,10 @@ class _$GGetProfileData_profileSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.avatarUrl;
+    value = object.avatar_url;
     if (value != null) {
       result
-        ..add('avatarUrl')
+        ..add('avatar_url')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -145,8 +148,8 @@ class _$GGetProfileData_profileSerializer
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'avatarUrl':
-          result.avatarUrl = serializers.deserialize(value,
+        case 'avatar_url':
+          result.avatar_url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'assignedTodos':
@@ -209,6 +212,14 @@ class _$GGetProfileData_profile_assignedTodosSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.assignee;
+    if (value != null) {
+      result
+        ..add('assignee')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                GGetProfileData_profile_assignedTodos_assignee)));
+    }
     return result;
   }
 
@@ -243,6 +254,92 @@ class _$GGetProfileData_profile_assignedTodosSerializer
         case 'is_completed':
           result.is_completed = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'assignee':
+          result.assignee.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GGetProfileData_profile_assignedTodos_assignee))!
+              as GGetProfileData_profile_assignedTodos_assignee);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GGetProfileData_profile_assignedTodos_assigneeSerializer
+    implements
+        StructuredSerializer<GGetProfileData_profile_assignedTodos_assignee> {
+  @override
+  final Iterable<Type> types = const [
+    GGetProfileData_profile_assignedTodos_assignee,
+    _$GGetProfileData_profile_assignedTodos_assignee
+  ];
+  @override
+  final String wireName = 'GGetProfileData_profile_assignedTodos_assignee';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GGetProfileData_profile_assignedTodos_assignee object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.avatar_url;
+    if (value != null) {
+      result
+        ..add('avatar_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GGetProfileData_profile_assignedTodos_assignee deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GGetProfileData_profile_assignedTodos_assigneeBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'avatar_url':
+          result.avatar_url = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -369,7 +466,7 @@ class _$GGetProfileData_profile extends GGetProfileData_profile {
   @override
   final String? name;
   @override
-  final String? avatarUrl;
+  final String? avatar_url;
   @override
   final BuiltList<GGetProfileData_profile_assignedTodos>? assignedTodos;
 
@@ -381,7 +478,7 @@ class _$GGetProfileData_profile extends GGetProfileData_profile {
       {required this.G__typename,
       this.id,
       this.name,
-      this.avatarUrl,
+      this.avatar_url,
       this.assignedTodos})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -404,7 +501,7 @@ class _$GGetProfileData_profile extends GGetProfileData_profile {
         G__typename == other.G__typename &&
         id == other.id &&
         name == other.name &&
-        avatarUrl == other.avatarUrl &&
+        avatar_url == other.avatar_url &&
         assignedTodos == other.assignedTodos;
   }
 
@@ -412,7 +509,7 @@ class _$GGetProfileData_profile extends GGetProfileData_profile {
   int get hashCode {
     return $jf($jc(
         $jc($jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode),
-            avatarUrl.hashCode),
+            avatar_url.hashCode),
         assignedTodos.hashCode));
   }
 
@@ -422,7 +519,7 @@ class _$GGetProfileData_profile extends GGetProfileData_profile {
           ..add('G__typename', G__typename)
           ..add('id', id)
           ..add('name', name)
-          ..add('avatarUrl', avatarUrl)
+          ..add('avatar_url', avatar_url)
           ..add('assignedTodos', assignedTodos))
         .toString();
   }
@@ -445,9 +542,9 @@ class GGetProfileData_profileBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  String? _avatarUrl;
-  String? get avatarUrl => _$this._avatarUrl;
-  set avatarUrl(String? avatarUrl) => _$this._avatarUrl = avatarUrl;
+  String? _avatar_url;
+  String? get avatar_url => _$this._avatar_url;
+  set avatar_url(String? avatar_url) => _$this._avatar_url = avatar_url;
 
   ListBuilder<GGetProfileData_profile_assignedTodos>? _assignedTodos;
   ListBuilder<GGetProfileData_profile_assignedTodos> get assignedTodos =>
@@ -467,7 +564,7 @@ class GGetProfileData_profileBuilder
       _G__typename = $v.G__typename;
       _id = $v.id;
       _name = $v.name;
-      _avatarUrl = $v.avatarUrl;
+      _avatar_url = $v.avatar_url;
       _assignedTodos = $v.assignedTodos?.toBuilder();
       _$v = null;
     }
@@ -497,7 +594,7 @@ class GGetProfileData_profileBuilder
                   G__typename, r'GGetProfileData_profile', 'G__typename'),
               id: id,
               name: name,
-              avatarUrl: avatarUrl,
+              avatar_url: avatar_url,
               assignedTodos: _assignedTodos?.build());
     } catch (_) {
       late String _$failedField;
@@ -527,6 +624,8 @@ class _$GGetProfileData_profile_assignedTodos
   final String? created_at;
   @override
   final bool? is_completed;
+  @override
+  final GGetProfileData_profile_assignedTodos_assignee? assignee;
 
   factory _$GGetProfileData_profile_assignedTodos(
           [void Function(GGetProfileData_profile_assignedTodosBuilder)?
@@ -539,7 +638,8 @@ class _$GGetProfileData_profile_assignedTodos
       this.id,
       this.title,
       this.created_at,
-      this.is_completed})
+      this.is_completed,
+      this.assignee})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGetProfileData_profile_assignedTodos', 'G__typename');
@@ -563,15 +663,20 @@ class _$GGetProfileData_profile_assignedTodos
         id == other.id &&
         title == other.title &&
         created_at == other.created_at &&
-        is_completed == other.is_completed;
+        is_completed == other.is_completed &&
+        assignee == other.assignee;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, G__typename.hashCode), id.hashCode), title.hashCode),
-            created_at.hashCode),
-        is_completed.hashCode));
+        $jc(
+            $jc(
+                $jc($jc($jc(0, G__typename.hashCode), id.hashCode),
+                    title.hashCode),
+                created_at.hashCode),
+            is_completed.hashCode),
+        assignee.hashCode));
   }
 
   @override
@@ -582,7 +687,8 @@ class _$GGetProfileData_profile_assignedTodos
           ..add('id', id)
           ..add('title', title)
           ..add('created_at', created_at)
-          ..add('is_completed', is_completed))
+          ..add('is_completed', is_completed)
+          ..add('assignee', assignee))
         .toString();
   }
 }
@@ -613,6 +719,14 @@ class GGetProfileData_profile_assignedTodosBuilder
   bool? get is_completed => _$this._is_completed;
   set is_completed(bool? is_completed) => _$this._is_completed = is_completed;
 
+  GGetProfileData_profile_assignedTodos_assigneeBuilder? _assignee;
+  GGetProfileData_profile_assignedTodos_assigneeBuilder get assignee =>
+      _$this._assignee ??=
+          new GGetProfileData_profile_assignedTodos_assigneeBuilder();
+  set assignee(
+          GGetProfileData_profile_assignedTodos_assigneeBuilder? assignee) =>
+      _$this._assignee = assignee;
+
   GGetProfileData_profile_assignedTodosBuilder() {
     GGetProfileData_profile_assignedTodos._initializeBuilder(this);
   }
@@ -625,6 +739,7 @@ class GGetProfileData_profile_assignedTodosBuilder
       _title = $v.title;
       _created_at = $v.created_at;
       _is_completed = $v.is_completed;
+      _assignee = $v.assignee?.toBuilder();
       _$v = null;
     }
     return this;
@@ -646,14 +761,164 @@ class GGetProfileData_profile_assignedTodosBuilder
   GGetProfileData_profile_assignedTodos build() => _build();
 
   _$GGetProfileData_profile_assignedTodos _build() {
+    _$GGetProfileData_profile_assignedTodos _$result;
+    try {
+      _$result = _$v ??
+          new _$GGetProfileData_profile_assignedTodos._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                  r'GGetProfileData_profile_assignedTodos', 'G__typename'),
+              id: id,
+              title: title,
+              created_at: created_at,
+              is_completed: is_completed,
+              assignee: _assignee?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'assignee';
+        _assignee?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GGetProfileData_profile_assignedTodos',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GGetProfileData_profile_assignedTodos_assignee
+    extends GGetProfileData_profile_assignedTodos_assignee {
+  @override
+  final String G__typename;
+  @override
+  final String? id;
+  @override
+  final String? name;
+  @override
+  final String? avatar_url;
+
+  factory _$GGetProfileData_profile_assignedTodos_assignee(
+          [void Function(GGetProfileData_profile_assignedTodos_assigneeBuilder)?
+              updates]) =>
+      (new GGetProfileData_profile_assignedTodos_assigneeBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GGetProfileData_profile_assignedTodos_assignee._(
+      {required this.G__typename, this.id, this.name, this.avatar_url})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GGetProfileData_profile_assignedTodos_assignee', 'G__typename');
+  }
+
+  @override
+  GGetProfileData_profile_assignedTodos_assignee rebuild(
+          void Function(GGetProfileData_profile_assignedTodos_assigneeBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GGetProfileData_profile_assignedTodos_assigneeBuilder toBuilder() =>
+      new GGetProfileData_profile_assignedTodos_assigneeBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GGetProfileData_profile_assignedTodos_assignee &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        avatar_url == other.avatar_url;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode),
+        avatar_url.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GGetProfileData_profile_assignedTodos_assignee')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('avatar_url', avatar_url))
+        .toString();
+  }
+}
+
+class GGetProfileData_profile_assignedTodos_assigneeBuilder
+    implements
+        Builder<GGetProfileData_profile_assignedTodos_assignee,
+            GGetProfileData_profile_assignedTodos_assigneeBuilder> {
+  _$GGetProfileData_profile_assignedTodos_assignee? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _avatar_url;
+  String? get avatar_url => _$this._avatar_url;
+  set avatar_url(String? avatar_url) => _$this._avatar_url = avatar_url;
+
+  GGetProfileData_profile_assignedTodos_assigneeBuilder() {
+    GGetProfileData_profile_assignedTodos_assignee._initializeBuilder(this);
+  }
+
+  GGetProfileData_profile_assignedTodos_assigneeBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _avatar_url = $v.avatar_url;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GGetProfileData_profile_assignedTodos_assignee other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GGetProfileData_profile_assignedTodos_assignee;
+  }
+
+  @override
+  void update(
+      void Function(GGetProfileData_profile_assignedTodos_assigneeBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GGetProfileData_profile_assignedTodos_assignee build() => _build();
+
+  _$GGetProfileData_profile_assignedTodos_assignee _build() {
     final _$result = _$v ??
-        new _$GGetProfileData_profile_assignedTodos._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GGetProfileData_profile_assignedTodos', 'G__typename'),
+        new _$GGetProfileData_profile_assignedTodos_assignee._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GGetProfileData_profile_assignedTodos_assignee',
+                'G__typename'),
             id: id,
-            title: title,
-            created_at: created_at,
-            is_completed: is_completed);
+            name: name,
+            avatar_url: avatar_url);
     replace(_$result);
     return _$result;
   }

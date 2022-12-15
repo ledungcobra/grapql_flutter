@@ -78,6 +78,7 @@ abstract class GGetTodosData_todos_assignee
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GGetTodosData_todos_assignee> get serializer =>
       _$gGetTodosDataTodosAssigneeSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(

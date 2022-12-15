@@ -204,6 +204,13 @@ class _$GGetTodosData_todos_assigneeSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.avatar_url;
+    if (value != null) {
+      result
+        ..add('avatar_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -229,6 +236,10 @@ class _$GGetTodosData_todos_assigneeSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'avatar_url':
+          result.avatar_url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -519,13 +530,15 @@ class _$GGetTodosData_todos_assignee extends GGetTodosData_todos_assignee {
   final String? id;
   @override
   final String? name;
+  @override
+  final String? avatar_url;
 
   factory _$GGetTodosData_todos_assignee(
           [void Function(GGetTodosData_todos_assigneeBuilder)? updates]) =>
       (new GGetTodosData_todos_assigneeBuilder()..update(updates))._build();
 
   _$GGetTodosData_todos_assignee._(
-      {required this.G__typename, this.id, this.name})
+      {required this.G__typename, this.id, this.name, this.avatar_url})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGetTodosData_todos_assignee', 'G__typename');
@@ -546,13 +559,15 @@ class _$GGetTodosData_todos_assignee extends GGetTodosData_todos_assignee {
     return other is GGetTodosData_todos_assignee &&
         G__typename == other.G__typename &&
         id == other.id &&
-        name == other.name;
+        name == other.name &&
+        avatar_url == other.avatar_url;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode),
+        avatar_url.hashCode));
   }
 
   @override
@@ -560,7 +575,8 @@ class _$GGetTodosData_todos_assignee extends GGetTodosData_todos_assignee {
     return (newBuiltValueToStringHelper(r'GGetTodosData_todos_assignee')
           ..add('G__typename', G__typename)
           ..add('id', id)
-          ..add('name', name))
+          ..add('name', name)
+          ..add('avatar_url', avatar_url))
         .toString();
   }
 }
@@ -583,6 +599,10 @@ class GGetTodosData_todos_assigneeBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _avatar_url;
+  String? get avatar_url => _$this._avatar_url;
+  set avatar_url(String? avatar_url) => _$this._avatar_url = avatar_url;
+
   GGetTodosData_todos_assigneeBuilder() {
     GGetTodosData_todos_assignee._initializeBuilder(this);
   }
@@ -593,6 +613,7 @@ class GGetTodosData_todos_assigneeBuilder
       _G__typename = $v.G__typename;
       _id = $v.id;
       _name = $v.name;
+      _avatar_url = $v.avatar_url;
       _$v = null;
     }
     return this;
@@ -618,7 +639,8 @@ class GGetTodosData_todos_assigneeBuilder
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename, r'GGetTodosData_todos_assignee', 'G__typename'),
             id: id,
-            name: name);
+            name: name,
+            avatar_url: avatar_url);
     replace(_$result);
     return _$result;
   }

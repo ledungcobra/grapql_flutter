@@ -7,10 +7,12 @@
      assignee {
         id
         name
+        avatar_url
      }
      createdUser {
         id
         name
+        avatar_url
      }
      project {
         id

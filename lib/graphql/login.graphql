@@ -5,6 +5,7 @@ mutation Login($user: String, $password: String) {
     user {
       id
       name
+      avatar_url
     }
   }
 }

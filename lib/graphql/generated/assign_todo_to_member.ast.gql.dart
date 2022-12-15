@@ -92,6 +92,13 @@ const AssignTodoToMember = _i1.OperationDefinitionNode(
               directives: [],
               selectionSet: null,
             ),
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'avatar_url'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
           ]),
         ),
         _i1.FieldNode(
@@ -109,6 +116,13 @@ const AssignTodoToMember = _i1.OperationDefinitionNode(
             ),
             _i1.FieldNode(
               name: _i1.NameNode(value: 'name'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'avatar_url'),
               alias: null,
               arguments: [],
               directives: [],

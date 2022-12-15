@@ -12,12 +12,12 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) => Profile(
       assignedTodos: (json['assignedTodos'] as List<dynamic>)
           .map((e) => Todo.fromJson(e as Map<String, dynamic>))
           .toList(),
-      avatarUrl: json['avatarUrl'] as String?,
+      avatar_url: json['avatar_url'] as String?,
     );
 
 Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'assignedTodos': instance.assignedTodos,
-      'avatarUrl': instance.avatarUrl,
+      'avatar_url': instance.avatar_url,
     };

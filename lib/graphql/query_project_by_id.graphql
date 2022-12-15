@@ -8,6 +8,7 @@ query QueryProjectById($projectId: Int) {
       assignee {
         id
         name
+        avatar_url
       }
     }
     members {

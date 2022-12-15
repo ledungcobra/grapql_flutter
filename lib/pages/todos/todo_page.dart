@@ -15,7 +15,6 @@ final colorsMap = {
 
 class TodoPage extends StatelessWidget {
   final todoController = Get.find<TodosController>();
-  final dateFormat = Get.find<DateFormat>();
 
   TodoPage({Key? key}) : super(key: key);
 

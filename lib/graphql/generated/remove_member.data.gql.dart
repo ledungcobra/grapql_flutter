@@ -47,6 +47,7 @@ abstract class GRemoveMemberData_user
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GRemoveMemberData_user> get serializer =>
       _$gRemoveMemberDataUserSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(

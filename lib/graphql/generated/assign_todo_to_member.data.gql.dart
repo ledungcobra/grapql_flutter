@@ -87,6 +87,7 @@ abstract class GAssignTodoToMemberData_assignTodoToMember_assignee
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GAssignTodoToMemberData_assignTodoToMember_assignee>
       get serializer =>
           _$gAssignTodoToMemberDataAssignTodoToMemberAssigneeSerializer;
@@ -119,6 +120,7 @@ abstract class GAssignTodoToMemberData_assignTodoToMember_createdUser
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GAssignTodoToMemberData_assignTodoToMember_createdUser>
       get serializer =>
           _$gAssignTodoToMemberDataAssignTodoToMemberCreatedUserSerializer;

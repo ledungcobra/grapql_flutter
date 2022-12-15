@@ -750,7 +750,7 @@ const User = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'avatarUrl'),
+      name: _i1.NameNode(value: 'avatar_url'),
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(

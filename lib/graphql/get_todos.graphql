@@ -7,6 +7,7 @@
      assignee {
         id
         name
+        avatar_url
      }
    }
  }

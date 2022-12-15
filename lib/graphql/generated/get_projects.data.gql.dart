@@ -81,6 +81,7 @@ abstract class GGetProjectsData_projects_manager
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GGetProjectsData_projects_manager> get serializer =>
       _$gGetProjectsDataProjectsManagerSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -111,6 +112,7 @@ abstract class GGetProjectsData_projects_members
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GGetProjectsData_projects_members> get serializer =>
       _$gGetProjectsDataProjectsMembersSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -143,6 +145,7 @@ abstract class GGetProjectsData_projects_todos
   String? get title;
   String? get created_at;
   bool? get is_completed;
+  GGetProjectsData_projects_todos_assignee? get assignee;
   static Serializer<GGetProjectsData_projects_todos> get serializer =>
       _$gGetProjectsDataProjectsTodosSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -152,6 +155,38 @@ abstract class GGetProjectsData_projects_todos
   static GGetProjectsData_projects_todos? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GGetProjectsData_projects_todos.serializer,
+        json,
+      );
+}
+
+abstract class GGetProjectsData_projects_todos_assignee
+    implements
+        Built<GGetProjectsData_projects_todos_assignee,
+            GGetProjectsData_projects_todos_assigneeBuilder> {
+  GGetProjectsData_projects_todos_assignee._();
+
+  factory GGetProjectsData_projects_todos_assignee(
+      [Function(GGetProjectsData_projects_todos_assigneeBuilder b)
+          updates]) = _$GGetProjectsData_projects_todos_assignee;
+
+  static void _initializeBuilder(
+          GGetProjectsData_projects_todos_assigneeBuilder b) =>
+      b..G__typename = 'User';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String? get id;
+  String? get name;
+  String? get avatar_url;
+  static Serializer<GGetProjectsData_projects_todos_assignee> get serializer =>
+      _$gGetProjectsDataProjectsTodosAssigneeSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GGetProjectsData_projects_todos_assignee.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GGetProjectsData_projects_todos_assignee? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GGetProjectsData_projects_todos_assignee.serializer,
         json,
       );
 }

@@ -2,12 +2,17 @@
    profile {
      id
      name
-     avatarUrl
+     avatar_url
      assignedTodos {
           id
           title
           created_at
           is_completed
+          assignee {
+            id
+            name
+            avatar_url
+          }
      }
    }
  }

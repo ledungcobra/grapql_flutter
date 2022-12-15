@@ -71,6 +71,7 @@ abstract class GLoginData_login_user
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GLoginData_login_user> get serializer =>
       _$gLoginDataLoginUserSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(

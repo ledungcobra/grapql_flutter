@@ -225,6 +225,13 @@ class _$GAddMemberToProjectData_project_managerSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.avatar_url;
+    if (value != null) {
+      result
+        ..add('avatar_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -250,6 +257,10 @@ class _$GAddMemberToProjectData_project_managerSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'avatar_url':
+          result.avatar_url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -293,6 +304,13 @@ class _$GAddMemberToProjectData_project_membersSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.avatar_url;
+    if (value != null) {
+      result
+        ..add('avatar_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -318,6 +336,10 @@ class _$GAddMemberToProjectData_project_membersSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'avatar_url':
+          result.avatar_url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -717,6 +739,8 @@ class _$GAddMemberToProjectData_project_manager
   final String? id;
   @override
   final String? name;
+  @override
+  final String? avatar_url;
 
   factory _$GAddMemberToProjectData_project_manager(
           [void Function(GAddMemberToProjectData_project_managerBuilder)?
@@ -725,7 +749,7 @@ class _$GAddMemberToProjectData_project_manager
           ._build();
 
   _$GAddMemberToProjectData_project_manager._(
-      {required this.G__typename, this.id, this.name})
+      {required this.G__typename, this.id, this.name, this.avatar_url})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GAddMemberToProjectData_project_manager', 'G__typename');
@@ -747,13 +771,15 @@ class _$GAddMemberToProjectData_project_manager
     return other is GAddMemberToProjectData_project_manager &&
         G__typename == other.G__typename &&
         id == other.id &&
-        name == other.name;
+        name == other.name &&
+        avatar_url == other.avatar_url;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode),
+        avatar_url.hashCode));
   }
 
   @override
@@ -762,7 +788,8 @@ class _$GAddMemberToProjectData_project_manager
             r'GAddMemberToProjectData_project_manager')
           ..add('G__typename', G__typename)
           ..add('id', id)
-          ..add('name', name))
+          ..add('name', name)
+          ..add('avatar_url', avatar_url))
         .toString();
   }
 }
@@ -785,6 +812,10 @@ class GAddMemberToProjectData_project_managerBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _avatar_url;
+  String? get avatar_url => _$this._avatar_url;
+  set avatar_url(String? avatar_url) => _$this._avatar_url = avatar_url;
+
   GAddMemberToProjectData_project_managerBuilder() {
     GAddMemberToProjectData_project_manager._initializeBuilder(this);
   }
@@ -795,6 +826,7 @@ class GAddMemberToProjectData_project_managerBuilder
       _G__typename = $v.G__typename;
       _id = $v.id;
       _name = $v.name;
+      _avatar_url = $v.avatar_url;
       _$v = null;
     }
     return this;
@@ -821,7 +853,8 @@ class GAddMemberToProjectData_project_managerBuilder
             G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
                 r'GAddMemberToProjectData_project_manager', 'G__typename'),
             id: id,
-            name: name);
+            name: name,
+            avatar_url: avatar_url);
     replace(_$result);
     return _$result;
   }
@@ -835,6 +868,8 @@ class _$GAddMemberToProjectData_project_members
   final String? id;
   @override
   final String? name;
+  @override
+  final String? avatar_url;
 
   factory _$GAddMemberToProjectData_project_members(
           [void Function(GAddMemberToProjectData_project_membersBuilder)?
@@ -843,7 +878,7 @@ class _$GAddMemberToProjectData_project_members
           ._build();
 
   _$GAddMemberToProjectData_project_members._(
-      {required this.G__typename, this.id, this.name})
+      {required this.G__typename, this.id, this.name, this.avatar_url})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GAddMemberToProjectData_project_members', 'G__typename');
@@ -865,13 +900,15 @@ class _$GAddMemberToProjectData_project_members
     return other is GAddMemberToProjectData_project_members &&
         G__typename == other.G__typename &&
         id == other.id &&
-        name == other.name;
+        name == other.name &&
+        avatar_url == other.avatar_url;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode),
+        avatar_url.hashCode));
   }
 
   @override
@@ -880,7 +917,8 @@ class _$GAddMemberToProjectData_project_members
             r'GAddMemberToProjectData_project_members')
           ..add('G__typename', G__typename)
           ..add('id', id)
-          ..add('name', name))
+          ..add('name', name)
+          ..add('avatar_url', avatar_url))
         .toString();
   }
 }
@@ -903,6 +941,10 @@ class GAddMemberToProjectData_project_membersBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _avatar_url;
+  String? get avatar_url => _$this._avatar_url;
+  set avatar_url(String? avatar_url) => _$this._avatar_url = avatar_url;
+
   GAddMemberToProjectData_project_membersBuilder() {
     GAddMemberToProjectData_project_members._initializeBuilder(this);
   }
@@ -913,6 +955,7 @@ class GAddMemberToProjectData_project_membersBuilder
       _G__typename = $v.G__typename;
       _id = $v.id;
       _name = $v.name;
+      _avatar_url = $v.avatar_url;
       _$v = null;
     }
     return this;
@@ -939,7 +982,8 @@ class GAddMemberToProjectData_project_membersBuilder
             G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
                 r'GAddMemberToProjectData_project_members', 'G__typename'),
             id: id,
-            name: name);
+            name: name,
+            avatar_url: avatar_url);
     replace(_$result);
     return _$result;
   }

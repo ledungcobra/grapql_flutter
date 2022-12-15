@@ -19,6 +19,9 @@ Serializer<GGetProjectsData_projects_members>
 Serializer<GGetProjectsData_projects_todos>
     _$gGetProjectsDataProjectsTodosSerializer =
     new _$GGetProjectsData_projects_todosSerializer();
+Serializer<GGetProjectsData_projects_todos_assignee>
+    _$gGetProjectsDataProjectsTodosAssigneeSerializer =
+    new _$GGetProjectsData_projects_todos_assigneeSerializer();
 
 class _$GGetProjectsDataSerializer
     implements StructuredSerializer<GGetProjectsData> {
@@ -214,6 +217,13 @@ class _$GGetProjectsData_projects_managerSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.avatar_url;
+    if (value != null) {
+      result
+        ..add('avatar_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -239,6 +249,10 @@ class _$GGetProjectsData_projects_managerSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'avatar_url':
+          result.avatar_url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -282,6 +296,13 @@ class _$GGetProjectsData_projects_membersSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.avatar_url;
+    if (value != null) {
+      result
+        ..add('avatar_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -307,6 +328,10 @@ class _$GGetProjectsData_projects_membersSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'avatar_url':
+          result.avatar_url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -363,6 +388,14 @@ class _$GGetProjectsData_projects_todosSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.assignee;
+    if (value != null) {
+      result
+        ..add('assignee')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(GGetProjectsData_projects_todos_assignee)));
+    }
     return result;
   }
 
@@ -397,6 +430,91 @@ class _$GGetProjectsData_projects_todosSerializer
         case 'is_completed':
           result.is_completed = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'assignee':
+          result.assignee.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GGetProjectsData_projects_todos_assignee))!
+              as GGetProjectsData_projects_todos_assignee);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GGetProjectsData_projects_todos_assigneeSerializer
+    implements StructuredSerializer<GGetProjectsData_projects_todos_assignee> {
+  @override
+  final Iterable<Type> types = const [
+    GGetProjectsData_projects_todos_assignee,
+    _$GGetProjectsData_projects_todos_assignee
+  ];
+  @override
+  final String wireName = 'GGetProjectsData_projects_todos_assignee';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GGetProjectsData_projects_todos_assignee object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.avatar_url;
+    if (value != null) {
+      result
+        ..add('avatar_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GGetProjectsData_projects_todos_assignee deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GGetProjectsData_projects_todos_assigneeBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'avatar_url':
+          result.avatar_url = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -702,6 +820,8 @@ class _$GGetProjectsData_projects_manager
   final String? id;
   @override
   final String? name;
+  @override
+  final String? avatar_url;
 
   factory _$GGetProjectsData_projects_manager(
           [void Function(GGetProjectsData_projects_managerBuilder)? updates]) =>
@@ -709,7 +829,7 @@ class _$GGetProjectsData_projects_manager
           ._build();
 
   _$GGetProjectsData_projects_manager._(
-      {required this.G__typename, this.id, this.name})
+      {required this.G__typename, this.id, this.name, this.avatar_url})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGetProjectsData_projects_manager', 'G__typename');
@@ -730,13 +850,15 @@ class _$GGetProjectsData_projects_manager
     return other is GGetProjectsData_projects_manager &&
         G__typename == other.G__typename &&
         id == other.id &&
-        name == other.name;
+        name == other.name &&
+        avatar_url == other.avatar_url;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode),
+        avatar_url.hashCode));
   }
 
   @override
@@ -744,7 +866,8 @@ class _$GGetProjectsData_projects_manager
     return (newBuiltValueToStringHelper(r'GGetProjectsData_projects_manager')
           ..add('G__typename', G__typename)
           ..add('id', id)
-          ..add('name', name))
+          ..add('name', name)
+          ..add('avatar_url', avatar_url))
         .toString();
   }
 }
@@ -767,6 +890,10 @@ class GGetProjectsData_projects_managerBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _avatar_url;
+  String? get avatar_url => _$this._avatar_url;
+  set avatar_url(String? avatar_url) => _$this._avatar_url = avatar_url;
+
   GGetProjectsData_projects_managerBuilder() {
     GGetProjectsData_projects_manager._initializeBuilder(this);
   }
@@ -777,6 +904,7 @@ class GGetProjectsData_projects_managerBuilder
       _G__typename = $v.G__typename;
       _id = $v.id;
       _name = $v.name;
+      _avatar_url = $v.avatar_url;
       _$v = null;
     }
     return this;
@@ -803,7 +931,8 @@ class GGetProjectsData_projects_managerBuilder
             G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
                 r'GGetProjectsData_projects_manager', 'G__typename'),
             id: id,
-            name: name);
+            name: name,
+            avatar_url: avatar_url);
     replace(_$result);
     return _$result;
   }
@@ -817,6 +946,8 @@ class _$GGetProjectsData_projects_members
   final String? id;
   @override
   final String? name;
+  @override
+  final String? avatar_url;
 
   factory _$GGetProjectsData_projects_members(
           [void Function(GGetProjectsData_projects_membersBuilder)? updates]) =>
@@ -824,7 +955,7 @@ class _$GGetProjectsData_projects_members
           ._build();
 
   _$GGetProjectsData_projects_members._(
-      {required this.G__typename, this.id, this.name})
+      {required this.G__typename, this.id, this.name, this.avatar_url})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGetProjectsData_projects_members', 'G__typename');
@@ -845,13 +976,15 @@ class _$GGetProjectsData_projects_members
     return other is GGetProjectsData_projects_members &&
         G__typename == other.G__typename &&
         id == other.id &&
-        name == other.name;
+        name == other.name &&
+        avatar_url == other.avatar_url;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode),
+        avatar_url.hashCode));
   }
 
   @override
@@ -859,7 +992,8 @@ class _$GGetProjectsData_projects_members
     return (newBuiltValueToStringHelper(r'GGetProjectsData_projects_members')
           ..add('G__typename', G__typename)
           ..add('id', id)
-          ..add('name', name))
+          ..add('name', name)
+          ..add('avatar_url', avatar_url))
         .toString();
   }
 }
@@ -882,6 +1016,10 @@ class GGetProjectsData_projects_membersBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _avatar_url;
+  String? get avatar_url => _$this._avatar_url;
+  set avatar_url(String? avatar_url) => _$this._avatar_url = avatar_url;
+
   GGetProjectsData_projects_membersBuilder() {
     GGetProjectsData_projects_members._initializeBuilder(this);
   }
@@ -892,6 +1030,7 @@ class GGetProjectsData_projects_membersBuilder
       _G__typename = $v.G__typename;
       _id = $v.id;
       _name = $v.name;
+      _avatar_url = $v.avatar_url;
       _$v = null;
     }
     return this;
@@ -918,7 +1057,8 @@ class GGetProjectsData_projects_membersBuilder
             G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
                 r'GGetProjectsData_projects_members', 'G__typename'),
             id: id,
-            name: name);
+            name: name,
+            avatar_url: avatar_url);
     replace(_$result);
     return _$result;
   }
@@ -936,6 +1076,8 @@ class _$GGetProjectsData_projects_todos
   final String? created_at;
   @override
   final bool? is_completed;
+  @override
+  final GGetProjectsData_projects_todos_assignee? assignee;
 
   factory _$GGetProjectsData_projects_todos(
           [void Function(GGetProjectsData_projects_todosBuilder)? updates]) =>
@@ -946,7 +1088,8 @@ class _$GGetProjectsData_projects_todos
       this.id,
       this.title,
       this.created_at,
-      this.is_completed})
+      this.is_completed,
+      this.assignee})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGetProjectsData_projects_todos', 'G__typename');
@@ -969,15 +1112,20 @@ class _$GGetProjectsData_projects_todos
         id == other.id &&
         title == other.title &&
         created_at == other.created_at &&
-        is_completed == other.is_completed;
+        is_completed == other.is_completed &&
+        assignee == other.assignee;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, G__typename.hashCode), id.hashCode), title.hashCode),
-            created_at.hashCode),
-        is_completed.hashCode));
+        $jc(
+            $jc(
+                $jc($jc($jc(0, G__typename.hashCode), id.hashCode),
+                    title.hashCode),
+                created_at.hashCode),
+            is_completed.hashCode),
+        assignee.hashCode));
   }
 
   @override
@@ -987,7 +1135,8 @@ class _$GGetProjectsData_projects_todos
           ..add('id', id)
           ..add('title', title)
           ..add('created_at', created_at)
-          ..add('is_completed', is_completed))
+          ..add('is_completed', is_completed)
+          ..add('assignee', assignee))
         .toString();
   }
 }
@@ -1018,6 +1167,13 @@ class GGetProjectsData_projects_todosBuilder
   bool? get is_completed => _$this._is_completed;
   set is_completed(bool? is_completed) => _$this._is_completed = is_completed;
 
+  GGetProjectsData_projects_todos_assigneeBuilder? _assignee;
+  GGetProjectsData_projects_todos_assigneeBuilder get assignee =>
+      _$this._assignee ??=
+          new GGetProjectsData_projects_todos_assigneeBuilder();
+  set assignee(GGetProjectsData_projects_todos_assigneeBuilder? assignee) =>
+      _$this._assignee = assignee;
+
   GGetProjectsData_projects_todosBuilder() {
     GGetProjectsData_projects_todos._initializeBuilder(this);
   }
@@ -1030,6 +1186,7 @@ class GGetProjectsData_projects_todosBuilder
       _title = $v.title;
       _created_at = $v.created_at;
       _is_completed = $v.is_completed;
+      _assignee = $v.assignee?.toBuilder();
       _$v = null;
     }
     return this;
@@ -1050,14 +1207,157 @@ class GGetProjectsData_projects_todosBuilder
   GGetProjectsData_projects_todos build() => _build();
 
   _$GGetProjectsData_projects_todos _build() {
+    _$GGetProjectsData_projects_todos _$result;
+    try {
+      _$result = _$v ??
+          new _$GGetProjectsData_projects_todos._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                  r'GGetProjectsData_projects_todos', 'G__typename'),
+              id: id,
+              title: title,
+              created_at: created_at,
+              is_completed: is_completed,
+              assignee: _assignee?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'assignee';
+        _assignee?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GGetProjectsData_projects_todos', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GGetProjectsData_projects_todos_assignee
+    extends GGetProjectsData_projects_todos_assignee {
+  @override
+  final String G__typename;
+  @override
+  final String? id;
+  @override
+  final String? name;
+  @override
+  final String? avatar_url;
+
+  factory _$GGetProjectsData_projects_todos_assignee(
+          [void Function(GGetProjectsData_projects_todos_assigneeBuilder)?
+              updates]) =>
+      (new GGetProjectsData_projects_todos_assigneeBuilder()..update(updates))
+          ._build();
+
+  _$GGetProjectsData_projects_todos_assignee._(
+      {required this.G__typename, this.id, this.name, this.avatar_url})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GGetProjectsData_projects_todos_assignee', 'G__typename');
+  }
+
+  @override
+  GGetProjectsData_projects_todos_assignee rebuild(
+          void Function(GGetProjectsData_projects_todos_assigneeBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GGetProjectsData_projects_todos_assigneeBuilder toBuilder() =>
+      new GGetProjectsData_projects_todos_assigneeBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GGetProjectsData_projects_todos_assignee &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        avatar_url == other.avatar_url;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), id.hashCode), name.hashCode),
+        avatar_url.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GGetProjectsData_projects_todos_assignee')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('avatar_url', avatar_url))
+        .toString();
+  }
+}
+
+class GGetProjectsData_projects_todos_assigneeBuilder
+    implements
+        Builder<GGetProjectsData_projects_todos_assignee,
+            GGetProjectsData_projects_todos_assigneeBuilder> {
+  _$GGetProjectsData_projects_todos_assignee? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _avatar_url;
+  String? get avatar_url => _$this._avatar_url;
+  set avatar_url(String? avatar_url) => _$this._avatar_url = avatar_url;
+
+  GGetProjectsData_projects_todos_assigneeBuilder() {
+    GGetProjectsData_projects_todos_assignee._initializeBuilder(this);
+  }
+
+  GGetProjectsData_projects_todos_assigneeBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _avatar_url = $v.avatar_url;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GGetProjectsData_projects_todos_assignee other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GGetProjectsData_projects_todos_assignee;
+  }
+
+  @override
+  void update(
+      void Function(GGetProjectsData_projects_todos_assigneeBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GGetProjectsData_projects_todos_assignee build() => _build();
+
+  _$GGetProjectsData_projects_todos_assignee _build() {
     final _$result = _$v ??
-        new _$GGetProjectsData_projects_todos._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GGetProjectsData_projects_todos', 'G__typename'),
+        new _$GGetProjectsData_projects_todos_assignee._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GGetProjectsData_projects_todos_assignee', 'G__typename'),
             id: id,
-            title: title,
-            created_at: created_at,
-            is_completed: is_completed);
+            name: name,
+            avatar_url: avatar_url);
     replace(_$result);
     return _$result;
   }

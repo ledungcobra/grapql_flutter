@@ -1,13 +1,13 @@
 import 'package:ferry/ferry.dart';
 import 'package:get/get.dart';
-import 'package:todo_app/common/handle_error.dart';
+import 'package:todo_app/common/mixins.dart';
 import 'package:todo_app/graphql/generated/create_project.req.gql.dart';
 import 'package:todo_app/graphql/generated/get_projects.req.gql.dart';
 
 import '../../dto/project.dart';
 
-class ProjectsController extends GetxController with HandleError {
-  final client = Get.find<Client>();
+class ProjectsController extends GetxController with HandleError,WithClient {
+
   final request = GGetProjectsReq();
   final projects = <Project>[].obs;
 
@@ -15,13 +15,7 @@ class ProjectsController extends GetxController with HandleError {
 
   ProjectsController();
 
-  @override
-  void onInit() {
-    super.onInit();
-    loadTodos();
-  }
-
-  loadTodos() {
+  loadProjects() {
     client.request(request).listen((event) {
       if (event.loading) {
         loading.value = true;

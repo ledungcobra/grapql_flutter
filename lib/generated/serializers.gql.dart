@@ -64,7 +64,8 @@ import 'package:todo_app/graphql/generated/get_profile.data.gql.dart'
     show
         GGetProfileData,
         GGetProfileData_profile,
-        GGetProfileData_profile_assignedTodos;
+        GGetProfileData_profile_assignedTodos,
+        GGetProfileData_profile_assignedTodos_assignee;
 import 'package:todo_app/graphql/generated/get_profile.req.gql.dart'
     show GGetProfileReq;
 import 'package:todo_app/graphql/generated/get_profile.var.gql.dart'
@@ -75,7 +76,8 @@ import 'package:todo_app/graphql/generated/get_projects.data.gql.dart'
         GGetProjectsData_projects,
         GGetProjectsData_projects_manager,
         GGetProjectsData_projects_members,
-        GGetProjectsData_projects_todos;
+        GGetProjectsData_projects_todos,
+        GGetProjectsData_projects_todos_assignee;
 import 'package:todo_app/graphql/generated/get_projects.req.gql.dart'
     show GGetProjectsReq;
 import 'package:todo_app/graphql/generated/get_projects.var.gql.dart'
@@ -189,6 +191,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetProfileData,
   GGetProfileData_profile,
   GGetProfileData_profile_assignedTodos,
+  GGetProfileData_profile_assignedTodos_assignee,
   GGetProfileReq,
   GGetProfileVars,
   GGetProjectsData,
@@ -196,6 +199,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetProjectsData_projects_manager,
   GGetProjectsData_projects_members,
   GGetProjectsData_projects_todos,
+  GGetProjectsData_projects_todos_assignee,
   GGetProjectsReq,
   GGetProjectsVars,
   GGetTodoByIdData,

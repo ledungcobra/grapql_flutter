@@ -5,16 +5,23 @@
      manager {
         id
         name
+        avatar_url
      }
      members {
         id
         name
+        avatar_url
      }
      todos {
         id
         title
         created_at
         is_completed
+        assignee {
+            id
+            name
+            avatar_url
+        }
      }
    }
  }

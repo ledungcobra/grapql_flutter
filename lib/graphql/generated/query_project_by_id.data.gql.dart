@@ -116,6 +116,7 @@ abstract class GQueryProjectByIdData_projectById_todos_assignee
   String get G__typename;
   String? get id;
   String? get name;
+  String? get avatar_url;
   static Serializer<GQueryProjectByIdData_projectById_todos_assignee>
       get serializer =>
           _$gQueryProjectByIdDataProjectByIdTodosAssigneeSerializer;

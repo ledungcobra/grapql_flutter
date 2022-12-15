@@ -3,8 +3,10 @@ import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_app/widgets/avatar.dart';
 
 import '../../dto/project.dart';
+import '../../service/user_service.dart';
 import '../../utils/date_format.dart';
 import '../../widgets/common_dialog.dart';
 import '../../widgets/todo.dart';
@@ -32,9 +34,9 @@ class ProjectDetailPage extends StatefulWidget {
 class _ProjectDetailPageState extends State<ProjectDetailPage>
     with TickerProviderStateMixin {
   final projectController = Get.find<ProjectDetailController>();
-  final dateFormat = Get.find<DateFormat>();
   final memberName = "".obs;
   final selectedMemberId = "".obs;
+  final userService = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
@@ -116,8 +118,8 @@ class _ProjectDetailPageState extends State<ProjectDetailPage>
                       color: Colors.red,
                     ),
                   ),
-                  avatar: ProfilePicture(
-                    name: x.name.substring(0, 1),
+                  avatar: DefaultAvatar(
+                    user: x,
                     radius: 22,
                     fontsize: 20,
                   ),
@@ -128,14 +130,14 @@ class _ProjectDetailPageState extends State<ProjectDetailPage>
     );
   }
 
-  Obx todoList() {
+  Widget todoList() {
     return Obx(
       () => SizedBox(
         height: Get.height * 0.4,
         child: ListView(
           children: widget.controller.project.value!.todos
               .map((x) => TodoWidget(
-                    x: x,
+                    todo: x,
                     handleAssignMember: _handleAssignMember,
                     handleDelete: _handleDelete,
                   ))
